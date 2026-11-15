@@ -1,0 +1,43 @@
+name: Verify inference service
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test-and-container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          version: "0.13.7"
+          enable-cache: true
+      - run: uv sync --frozen --extra dev
+      - run: uv run --frozen ruff check src scripts tests
+      - name: Build synthetic fixture without downloading training photos
+        run: uv run --frozen vision-sorter demo --no-serve --epochs 12
+      - run: uv run --frozen python -m unittest discover -s tests -v
+      - run: uv run --frozen python scripts/smoke_test.py
+      - name: Build deployment image with explicit demo artifacts
+        run: |
+          mkdir -p artifacts/empty-model
+          touch artifacts/empty-model/.gitkeep
+          docker build --build-arg MODEL_DIR=artifacts/demo-model --build-arg SEGMENTER_DIR=artifacts/empty-model --build-arg SEGMENTER_PATH= -t vision-sorter:ci .
+      - name: Smoke-test non-root read-only container
+        run: |
+          uv run --frozen python scripts/create_api_key.py
+          sudo chown 10001:10001 .secrets/api_key
+          sudo chmod 0400 .secrets/api_key
+          docker run -d --name sorter-ci --read-only --tmpfs /tmp --cap-drop ALL --security-opt no-new-privileges -p 127.0.0.1:8000:8000 -e SORTER_API_KEY_FILE=/run/secrets/api_key -v "$PWD/.secrets/api_key:/run/secrets/api_key:ro" vision-sorter:ci
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/ready; then break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:8000/ready
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/v1/model)" = "401"
+          docker logs sorter-ci
+      - name: Container logs on failure
+        if: failure()
+        run: docker logs sorter-ci || true

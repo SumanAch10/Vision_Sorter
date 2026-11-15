@@ -1,0 +1,32 @@
+# Add to compose.yaml. Supply server.crt and server.key in SORTER_TLS_DIR.
+services:
+  tls:
+    image: nginx:stable-alpine@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+    user: "101:101"
+    init: true
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${SORTER_TLS_PORT:-8443}:8443"
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ${SORTER_TLS_DIR:?Set SORTER_TLS_DIR to the certificate directory}/server.crt:/run/tls/server.crt:ro
+      - ${SORTER_TLS_DIR:?Set SORTER_TLS_DIR to the certificate directory}/server.key:/run/tls/server.key:ro
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,noexec,nosuid,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    cpus: 1
+    pids_limit: 64
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

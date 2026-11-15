@@ -1,0 +1,25 @@
+[Unit]
+Description=Vision Sorter inference API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=visionsorter
+Group=visionsorter
+WorkingDirectory=/opt/vision-sorter
+EnvironmentFile=/etc/vision-sorter.env
+ExecStart=/opt/vision-sorter/.venv/bin/vision-sorter serve --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=35
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+MemoryMax=2G
+TasksMax=128
+LimitNOFILE=1024
+
+[Install]
+WantedBy=multi-user.target
