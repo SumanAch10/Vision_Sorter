@@ -1,0 +1,384 @@
+{
+  "status": "passed",
+  "tested_at_utc": "2026-11-15T02:17:57Z",
+  "platform": "linux/arm64",
+  "docker_version": "29.9.3",
+  "image_id": "sha256:cd1a40dd493204c25f5da3b8e29125b4c396ae2d952a2a1ba0f667339c19d969",
+  "image_size_bytes": 1454512258,
+  "classifier": "resnet18-trashnet-tuned-fdf0a5bfa6",
+  "segmenter": "litter-unet-taco-6dee6d15a5",
+  "http_checks": 24,
+  "https_checks": 23,
+  "runtime_checks": 14,
+  "unit_tests": 28,
+  "certificate_validation": true,
+  "certificate_scope": "Private two-day CA for localhost/127.0.0.1; trusted only by the test client.",
+  "non_root_readonly_runtime": true,
+  "graceful_shutdown": true,
+  "fixes": [
+    "Moved all Nginx temporary cache directories under writable /tmp for non-root read-only TLS ingress."
+  ],
+  "scope": [
+    "Actual classifier and real semantic-segmentation weights packaged and tested.",
+    "Linux ARM64 verified in an isolated Lima VM; Linux AMD64 was not exercised.",
+    "Public-domain DNS/certificates, cloud hosting, and physical robot operation are not verified."
+  ],
+  "http": {
+    "status": "passed",
+    "base_url": "http://127.0.0.1:18000",
+    "certificate_validation": false,
+    "model_version": "resnet18-trashnet-tuned-fdf0a5bfa6",
+    "segmentation_model_version": "litter-unet-taco-6dee6d15a5",
+    "check_count": 24,
+    "checks": [
+      {
+        "name": "public_liveness",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "real_model_readiness",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "hardware_disabled",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authentication_/v1/model",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authentication_/metrics",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "wrong_key_rejected",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authorized_model_metadata",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "training_records_not_exposed",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "openapi_contract",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authenticated_real_inference",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "request_id_roundtrip",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "response_security_headers",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "real_semantic_mask",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "mask_coordinates_restored",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "unreviewed_pick_rejected",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "corrupt_image",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "unsupported_type",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "empty_body",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "declared_oversize_rejected",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "concurrent_load_bounded",
+        "passed": true,
+        "detail": {
+          "success": 1,
+          "busy": 5
+        }
+      },
+      {
+        "name": "busy_rejection_observed",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authenticated_operational_metrics",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "rate_limit_enforced",
+        "passed": true,
+        "detail": {
+          "rejected": 16
+        }
+      },
+      {
+        "name": "readiness_after_errors_and_load",
+        "passed": true,
+        "detail": null
+      }
+    ],
+    "timestamp_utc": "2026-11-15T02:16:41Z"
+  },
+  "https": {
+    "status": "passed",
+    "base_url": "https://127.0.0.1:18443",
+    "certificate_validation": true,
+    "model_version": "resnet18-trashnet-tuned-fdf0a5bfa6",
+    "segmentation_model_version": "litter-unet-taco-6dee6d15a5",
+    "check_count": 23,
+    "checks": [
+      {
+        "name": "public_liveness",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "real_model_readiness",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "hardware_disabled",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authentication_/v1/model",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authentication_/metrics",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "wrong_key_rejected",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authorized_model_metadata",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "training_records_not_exposed",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "openapi_contract",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authenticated_real_inference",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "request_id_roundtrip",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "response_security_headers",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "real_semantic_mask",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "mask_coordinates_restored",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "unreviewed_pick_rejected",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "corrupt_image",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "unsupported_type",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "empty_body",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "declared_oversize_rejected",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "concurrent_load_bounded",
+        "passed": true,
+        "detail": {
+          "success": 1,
+          "busy": 5
+        }
+      },
+      {
+        "name": "busy_rejection_observed",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "authenticated_operational_metrics",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "readiness_after_errors_and_load",
+        "passed": true,
+        "detail": null
+      }
+    ],
+    "timestamp_utc": "2026-11-15T02:17:57Z"
+  },
+  "runtime": {
+    "status": "passed",
+    "platform": "linux/arm64",
+    "docker_version": "29.9.3",
+    "image_id": "sha256:cd1a40dd493204c25f5da3b8e29125b4c396ae2d952a2a1ba0f667339c19d969",
+    "image_size_bytes": 1454512258,
+    "check_count": 14,
+    "checks": [
+      {
+        "name": "non_root_user",
+        "passed": true
+      },
+      {
+        "name": "read_only_root_filesystem",
+        "passed": true
+      },
+      {
+        "name": "all_capabilities_dropped",
+        "passed": true
+      },
+      {
+        "name": "no_new_privileges",
+        "passed": true
+      },
+      {
+        "name": "memory_limit_2g",
+        "passed": true
+      },
+      {
+        "name": "cpu_limit_2",
+        "passed": true
+      },
+      {
+        "name": "pid_limit_128",
+        "passed": true
+      },
+      {
+        "name": "not_privileged",
+        "passed": true
+      },
+      {
+        "name": "healthy_real_container",
+        "passed": true
+      },
+      {
+        "name": "secret_readonly_mount",
+        "passed": true
+      },
+      {
+        "name": "filesystem_write_probe",
+        "passed": true
+      },
+      {
+        "name": "secret_permissions_0400_uid_10001",
+        "passed": true
+      },
+      {
+        "name": "external_bind_without_secret_fails_closed",
+        "passed": true
+      },
+      {
+        "name": "private_test_ca_not_globally_trusted",
+        "passed": true
+      }
+    ],
+    "configured_limits": {
+      "memory_bytes": 2147483648,
+      "cpus": 2.0,
+      "pids": 128
+    }
+  },
+  "shutdown": {
+    "status": "passed",
+    "api_graceful_shutdown": true,
+    "note": "Uvicorn completed its lifespan shutdown and then replayed SIGTERM; exit 143 is the expected signal exit, not a forced kill.",
+    "containers": [
+      {
+        "name": "vision-sorter-release-test-api-1",
+        "exit_code": 143,
+        "oom_killed": false
+      },
+      {
+        "name": "vision-sorter-release-test-tls-1",
+        "exit_code": 0,
+        "oom_killed": false
+      }
+    ]
+  },
+  "test_environment_cleanup": {
+    "containers_stopped": true,
+    "test_vm_stopped": true,
+    "existing_app_port_8000_ready": true
+  }
+}

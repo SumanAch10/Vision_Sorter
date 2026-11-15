@@ -1,0 +1,371 @@
+{
+  "version": "0.3.0",
+  "models": {
+    "schema_version": "1.0",
+    "model_version": "resnet18-trashnet-tuned-fdf0a5bfa6",
+    "architecture": "resnet18-material",
+    "classes": [
+      "cardboard",
+      "glass",
+      "metal",
+      "paper",
+      "plastic",
+      "trash"
+    ],
+    "demo": false,
+    "approved_for_simulation": false,
+    "temperature": 1.752304196357727,
+    "preprocessing": {
+      "recipe": "ResNet18_Weights.IMAGENET1K_V1",
+      "size": [
+        224,
+        224
+      ]
+    },
+    "source": {
+      "dataset": "https://github.com/garythung/trashnet",
+      "authors": [
+        "Gary Thung",
+        "Mindy Yang"
+      ],
+      "license": "MIT",
+      "pretrained": "https://download.pytorch.org/models/resnet18-f37072fd.pth"
+    },
+    "limitations": [
+      "Material classification only; metal does not prove can, plastic does not prove bottle.",
+      "No real-data segmentation, localization, robot approval, or industrial validation.",
+      "Random stratified content-deduplicated split; near-duplicate and acquisition-session leakage remain possible.",
+      "Confidence calibrated on TrashNet validation images, not arbitrary web photos or unknown objects."
+    ],
+    "validation": {
+      "accuracy": 0.8597883582115173,
+      "macro_f1": 0.8415009878554591,
+      "nll": 0.40666258335113525,
+      "expected_calibration_error": 0.01417464420592296,
+      "brier_score": 0.2033979594707489,
+      "confidence_threshold": 0.85,
+      "margin_threshold": 0.15,
+      "accepted_count": 261,
+      "sample_count": 378,
+      "coverage": 0.6904761791229248,
+      "accepted_accuracy": 0.954023003578186,
+      "confusion_matrix": [
+        [
+          54,
+          0,
+          0,
+          5,
+          1,
+          0
+        ],
+        [
+          0,
+          69,
+          1,
+          1,
+          4,
+          0
+        ],
+        [
+          0,
+          7,
+          49,
+          2,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          87,
+          0,
+          1
+        ],
+        [
+          0,
+          10,
+          2,
+          6,
+          52,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          6,
+          0,
+          14
+        ]
+      ],
+      "per_class": {
+        "cardboard": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316,
+          "support": 60
+        },
+        "glass": {
+          "precision": 0.7840909090909091,
+          "recall": 0.92,
+          "f1": 0.8466257668711655,
+          "support": 75
+        },
+        "metal": {
+          "precision": 0.9423076923076923,
+          "recall": 0.8032786885245902,
+          "f1": 0.8672566371681416,
+          "support": 61
+        },
+        "paper": {
+          "precision": 0.8130841121495327,
+          "recall": 0.9775280898876404,
+          "f1": 0.8877551020408163,
+          "support": 89
+        },
+        "plastic": {
+          "precision": 0.896551724137931,
+          "recall": 0.7222222222222222,
+          "f1": 0.7999999999999999,
+          "support": 72
+        },
+        "trash": {
+          "precision": 0.7368421052631579,
+          "recall": 0.6666666666666666,
+          "f1": 0.7,
+          "support": 21
+        }
+      }
+    },
+    "test": {
+      "accuracy": 0.8897637724876404,
+      "macro_f1": 0.8836440525642776,
+      "nll": 0.34695106744766235,
+      "expected_calibration_error": 0.03768657974433154,
+      "brier_score": 0.17252980172634125,
+      "confidence_threshold": 0.85,
+      "margin_threshold": 0.15,
+      "accepted_count": 252,
+      "sample_count": 381,
+      "coverage": 0.6614173054695129,
+      "accepted_accuracy": 0.9722222089767456,
+      "confusion_matrix": [
+        [
+          54,
+          1,
+          0,
+          5,
+          0,
+          1
+        ],
+        [
+          0,
+          64,
+          1,
+          1,
+          9,
+          0
+        ],
+        [
+          0,
+          7,
+          53,
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          88,
+          1,
+          0
+        ],
+        [
+          0,
+          2,
+          3,
+          3,
+          64,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          3,
+          1,
+          16
+        ]
+      ],
+      "per_class": {
+        "cardboard": {
+          "precision": 0.9818181818181818,
+          "recall": 0.8852459016393442,
+          "f1": 0.9310344827586207,
+          "support": 61
+        },
+        "glass": {
+          "precision": 0.8648648648648649,
+          "recall": 0.8533333333333334,
+          "f1": 0.8590604026845637,
+          "support": 75
+        },
+        "metal": {
+          "precision": 0.9137931034482759,
+          "recall": 0.8548387096774194,
+          "f1": 0.8833333333333333,
+          "support": 62
+        },
+        "paper": {
+          "precision": 0.8712871287128713,
+          "recall": 0.9777777777777777,
+          "f1": 0.9214659685863874,
+          "support": 90
+        },
+        "plastic": {
+          "precision": 0.8421052631578947,
+          "recall": 0.8888888888888888,
+          "f1": 0.8648648648648649,
+          "support": 72
+        },
+        "trash": {
+          "precision": 0.9411764705882353,
+          "recall": 0.7619047619047619,
+          "f1": 0.8421052631578947,
+          "support": 21
+        }
+      }
+    },
+    "capabilities": {
+      "classification": true,
+      "semantic_segmentation": true,
+      "real_semantic_segmentation": true,
+      "physical_robot_control": false
+    },
+    "segmentation": {
+      "schema_version": "1.0",
+      "model_version": "litter-unet-taco-6dee6d15a5",
+      "architecture": "resnet18-litter-unet",
+      "classes": [
+        "background",
+        "litter"
+      ],
+      "demo": false,
+      "approved_for_simulation": false,
+      "preprocessing": {
+        "size": 256,
+        "resize": "aspect-preserving letterbox",
+        "padding_rgb": [
+          128,
+          128,
+          128
+        ],
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ],
+        "mask_ignore_label": 255
+      },
+      "source": "https://github.com/pedropro/TACO",
+      "limitations": [
+        "Binary union of all annotated litter categories, not per-material segmentation.",
+        "Source batch-disjoint split; batches are not guaranteed independent acquisition sessions.",
+        "Image license fields may be unspecified; do not redistribute source photographs without checking rights.",
+        "Pilot model on a subset of TACO; not industrially validated.",
+        "No per-material semantic labels or instance identities; touching litter may merge.",
+        "Masks, centroids, and scores are predictions, not verified physical grasp points.",
+        "MPS training is seeded but bitwise reproducibility across devices is not guaranteed."
+      ],
+      "semantic_task": "binary_litter_segmentation",
+      "input_size": 256,
+      "mask_threshold": 0.5,
+      "validation": {
+        "foreground_iou_macro": 0.5820668095255218,
+        "foreground_dice_macro": 0.6988502192899425,
+        "foreground_iou_micro": 0.6401876063768656,
+        "precision": 0.726610348468849,
+        "recall": 0.8433205969288443,
+        "sample_count": 97,
+        "mask_threshold": 0.5,
+        "evaluation_resolution": [
+          256,
+          256
+        ],
+        "ignored_label": 255
+      },
+      "test": {
+        "foreground_iou_macro": 0.5113395090574959,
+        "foreground_dice_macro": 0.614753534683075,
+        "foreground_iou_micro": 0.6053256615261098,
+        "precision": 0.8263025458851392,
+        "recall": 0.6935809185448355,
+        "sample_count": 313,
+        "mask_threshold": 0.5,
+        "evaluation_resolution": [
+          256,
+          256
+        ],
+        "ignored_label": 255
+      }
+    }
+  },
+  "classifier_dataset_counts": {
+    "train": 1762,
+    "validation": 378,
+    "test": 381
+  },
+  "segmenter_dataset_counts": {
+    "train": 622,
+    "validation": 97,
+    "test": 313
+  },
+  "verification": {
+    "local_tests_passed": 28,
+    "dependency_lock": true,
+    "wheel_includes_ui": true,
+    "local_http_verified": true,
+    "docker_runtime_verified": true,
+    "cloud_deployed": false,
+    "physical_robot_verified": false,
+    "local_https_verified": true,
+    "deployment_http_checks": 24,
+    "deployment_https_checks": 23,
+    "deployment_runtime_checks": 14,
+    "deployment_platform": "linux/arm64",
+    "graceful_shutdown_verified": true
+  },
+  "limitations": [
+    "Separate tasks and datasets; no measured joint pick accuracy.",
+    "Binary litter/background masks, not per-material or instance segmentation.",
+    "The silver-can regression is still misclassified and rejected.",
+    "No external untouched benchmark or industrial safety validation."
+  ],
+  "local_latency": {
+    "device": "CPU",
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "torch_version": "2.15.0",
+    "torch_threads": 2,
+    "sample_count": 20,
+    "seed": 42,
+    "classifier": "resnet18-trashnet-tuned-fdf0a5bfa6",
+    "segmenter": "litter-unet-taco-6dee6d15a5",
+    "p50_ms": 33.68862498609815,
+    "p95_ms": 36.01390481780982,
+    "min_ms": 32.27345799678005,
+    "max_ms": 36.41187498578802,
+    "measurement": "Sequential full pipeline plus schema validation; disk read and HTTP transfer excluded.",
+    "image_source": "Seeded sample of held-out TACO author-hosted thumbnails",
+    "limitations": [
+      "Not a throughput or concurrent-load benchmark; target deployment hardware will differ."
+    ]
+  }
+}
