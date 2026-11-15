@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vision Sorter · Inspection station</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+<header><a class="brand" href="/">◈ VISION SORTER</a><span id="health" class="online">Connecting…</span></header>
+<main>
+  <div class="eyebrow">COMPUTER VISION / RECYCLING INSPECTION</div>
+  <h1>See the material.<br>Find the litter.</h1>
+  <p class="intro">Inspect a photo with material classification and learned semantic segmentation. Review the evidence before simulating a pick.</p>
+  <div class="connection"><label for="api-key">API key <span class="muted">if this station requires one</span></label><input id="api-key" type="password" autocomplete="off" placeholder="Kept only in this page’s memory"><button class="secondary" id="connect">Connect</button><a href="/docs" target="_blank" rel="noreferrer">API reference ↗</a></div>
+  <p id="model-note" class="model-note" role="status">Loading model evidence…</p>
+  <div class="grid">
+    <section class="panel">
+      <div class="panel-head"><b>Inspection frame</b><span class="badge">One isolated object</span></div>
+      <div class="stage"><div id="empty" class="empty"><span class="empty-icon">◎</span><p>Upload a clear photograph to begin.<br>PNG, JPEG or WebP · up to 10 MiB</p></div><canvas id="canvas" hidden aria-label="Uploaded image with predicted litter mask"></canvas><video id="video" autoplay playsinline hidden aria-label="Camera preview"></video></div>
+      <div class="controls"><label for="file">Choose an image</label><input id="file" type="file" accept="image/png,image/jpeg,image/webp"><div class="actions"><button id="run" disabled>Inspect image →</button><button class="secondary" id="camera">Use camera</button></div><label class="toggle"><input type="checkbox" id="show-mask" checked> Show predicted litter mask <span class="swatch"></span></label><p class="muted" id="mask-note">Masks appear when a segmentation model is loaded.</p><p id="error" role="alert"></p></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><b>Inspection result</b><span id="status" class="badge">Awaiting image</span></div>
+      <div class="result" aria-live="polite">
+        <div class="eyebrow" id="version">MODEL LOADING</div><h2 id="object">Ready to inspect</h2>
+        <div class="metrics"><div class="metric"><small id="confidence-label">Class score</small><strong id="confidence">—</strong></div><div class="metric"><small>Pipeline latency</small><strong id="latency">—</strong></div><div class="metric"><small>Image centroid · px</small><strong id="center">—</strong></div><div class="metric"><small>Table position · mm</small><strong id="point">—</strong></div></div>
+        <div id="segmentation" class="segmentation">No semantic mask yet.</div>
+        <p id="prediction-note" class="muted"></p><h3>Alternative predictions</h3><ul id="candidates"><li>Waiting for an image</li></ul><h3>Decision checks</h3><ul id="reasons"><li>Waiting for an image</li></ul>
+        <h3>Simulation</h3><p id="simulation">No command issued.</p>
+        <details><summary>Structured API response</summary><pre id="json">{}</pre></details><p><a id="download" hidden download="decision.json">Download decision JSON ↓</a></p>
+      </div>
+    </section>
+  </div>
+  <footer><b>SIMULATION ONLY</b> · Binary semantic labels are litter/background; material labels describe the whole image. Masks, centroids, and scores can be wrong. Calibration and model approvals are required before simulated picks. No physical robot is connected.</footer>
+</main>
+</body>
+</html>
